@@ -1,3 +1,5 @@
+import Item from "./item";
+
 export default function ItemList({ name, quantity, category }) {
         const item1 = {
             name: "milk, 4 L 🥛",
@@ -70,4 +72,23 @@ export default function ItemList({ name, quantity, category }) {
             quantity: 4,
             category: "household",
           };
+
+      return (
+        <>
+          <ul>
+            <li><Item {...item1}/></li>
+            <li><Item {...item2}/></li>
+            <li><Item {...item3}/></li>
+            <li><Item {...item4}/></li>
+            <li><Item {...item5}/></li>
+            <li><Item {...item6}/></li>
+            <li><Item {...item7}/></li>
+            <li><Item {...item8}/></li>
+            <li><Item {...item9}/></li>
+            <li><Item {...item10}/></li>
+            <li><Item {...item11}/></li>
+            <li><Item {...item12}/></li>
+          </ul>
+        </>
+      )
   }
