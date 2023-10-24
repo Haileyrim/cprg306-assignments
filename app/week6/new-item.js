@@ -1,10 +1,26 @@
 import { useState } from "react";
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState("1");
-  const [category, setCategory] = useState("Produce");
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
   const [itemCreated, setItemCreated] = useState(false);
+
+  const handleAddItem = () => {
+    const newItem = {
+      name,
+      quantity: parseInt(quantity),
+      category,
+    };
+
+    onAddItem(newItem);
+
+    setItemCreated(true);
+    setName("");
+    setQuantity("");
+    setCategory("");
+  };
+  
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -18,11 +34,6 @@ export default function NewItem() {
     setCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here, for example, set itemCreated to true.
-    setItemCreated(true);
-  };
 
   return (
     <main>
@@ -35,7 +46,6 @@ export default function NewItem() {
 
         <div className="flex flex-col items-center justify-center min-h-screen">
           <h1 className="text-4xl font-bold mb-5">Add New Item</h1>
-          <form onSubmit={handleSubmit}>
             <span className="text-gray-800 ">Item Name:</span>
             <label className="block mb-4">
               <input
@@ -81,12 +91,10 @@ export default function NewItem() {
             </label>
 
             <button
-              type="submit"
               className="hover:bg-sky-100 border border-black p-2 m-2 block w-10"
-            >
+              onClick={handleAddItem}>
               +
             </button>
-          </form>
         </div>
       </div>
     </main>
